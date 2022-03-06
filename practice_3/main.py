@@ -6,10 +6,20 @@ with open('file.txt', 'r', encoding='utf-8') as file:
         # print(key, ':', ' '.join(str(x) for x in dict_main[key]))
 
 dict_tmp = {}
+country = []
 for _ in range(int(input())):
-    country = input().strip()
-    dict_tmp[country] = dict_main[country]
+    language = input().strip()
 
-for line in dict_tmp:
-    # print(str(dict_tmp.get(line)).strip("[ |] |' |*''\n|"))
-    print(''.join(str(x) for x in dict_tmp[line]).strip(' '), end='')
+    for key, value in dict_main.items():
+        for val in value:
+            if language in val:
+                country.append(key)
+                break
+
+    dict_tmp[language] = country
+    country = []
+
+for key, value in dict_tmp.items():
+    for val in value:
+        print(val, end=' ')
+    print()
